@@ -15,7 +15,9 @@ import java.util.Optional;
 public class ProjectRepositoryImpl implements IProjectRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProjectRepositoryImpl.class);
+
     List<Project> projects = new ArrayList<>();
+    
     @Value("${project.prefix}")
     private String prefix;
     @Value("${project.suffix}")
