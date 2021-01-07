@@ -1,15 +1,21 @@
-package com.seanroshan.persistence.repository.impl;
+package com.seanroshan.ls.persistence.repository.impl;
 
-import com.seanroshan.persistence.repository.IProjectRepository;
-import com.seanroshan.persistence.model.Project;
+import com.seanroshan.ls.persistence.repository.IProjectRepository;
+import com.seanroshan.ls.persistence.model.Project;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class ProjectRepositoryImpl implements IProjectRepository {
 
     List<Project> projects = new ArrayList<>();
+
+    public ProjectRepositoryImpl() {
+        super();
+    }
 
     @Override
     public Optional<Project> findById(Long id) {

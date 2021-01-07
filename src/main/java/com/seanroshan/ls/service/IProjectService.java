@@ -1,6 +1,6 @@
-package com.seanroshan.service;
+package com.seanroshan.ls.service;
 
-import com.seanroshan.persistence.model.Project;
+import com.seanroshan.ls.persistence.model.Project;
 
 import java.util.Optional;
 

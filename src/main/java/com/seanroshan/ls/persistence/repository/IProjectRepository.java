@@ -1,6 +1,6 @@
-package com.seanroshan.persistence.repository;
+package com.seanroshan.ls.persistence.repository;
 
-import com.seanroshan.persistence.model.Project;
+import com.seanroshan.ls.persistence.model.Project;
 
 import java.util.Optional;
 
