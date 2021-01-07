@@ -1,7 +1,8 @@
-package com.seanroshan.service;
+package com.seanroshan.service.impl;
 
 import com.seanroshan.persistence.model.Project;
 import com.seanroshan.persistence.repository.IProjectRepository;
+import com.seanroshan.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
