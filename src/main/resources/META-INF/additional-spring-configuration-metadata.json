@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "project.prefix",
+      "type": "java.lang.String",
+      "description": "Description for project.prefix."
+    },
+    {
+      "name": "project.suffix",
+      "type": "java.lang.String",
+      "description": "Description for project.suffix."
+    }
+  ]
+}

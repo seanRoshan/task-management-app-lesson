@@ -1,4 +1,4 @@
-package com.seanroshan.taskmanagementapplesson;
+package com.seanroshan.ls;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
