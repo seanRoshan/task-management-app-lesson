@@ -1,14 +1,16 @@
 package com.seanroshan.ls.persistence.repository;
 
 import com.seanroshan.ls.persistence.model.Project;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
-public interface IProjectRepository {
+public interface IProjectRepository extends PagingAndSortingRepository<Project, Long> {
 
-    Optional<Project> findById(Long id);
+    Optional<Project> findByName(String name);
 
-    Project save(Project project);
+    List<Project> findByDateCreatedBetween(LocalDate start, LocalDate end);
 
-    void updateInternalId(Project project);
 }

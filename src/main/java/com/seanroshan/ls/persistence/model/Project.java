@@ -1,41 +1,39 @@
 package com.seanroshan.ls.persistence.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
-import java.util.Random;
+import java.util.Set;
 
+@Entity
 public class Project {
 
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
+
     private LocalDate dateCreated;
 
-    private String internalId;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id")
+    private Set<Task> tasks;
+
 
     public Project() {
     }
 
-    public Project(Long id, String name, LocalDate dateCreated) {
-        this.id = generateId(id);
-        this.name = name;
-        this.dateCreated = dateCreated;
-        this.internalId = "";
-    }
-
     public Project(String name, LocalDate dateCreated) {
-        this.id = generateId(null);
         this.name = name;
         this.dateCreated = dateCreated;
+        this.tasks = new HashSet<>();
     }
 
-    @SuppressWarnings("CopyConstructorMissesField")
     public Project(Project project) {
-        this(project.getId(), project.getName(), project.getDateCreated());
-    }
-
-    private Long generateId(Long id) {
-        long newId = Objects.isNull(id) ? new Random().nextLong() : id;
-        return Math.abs(newId);
+        this(project.getName(), project.getDateCreated());
+        this.tasks = new HashSet<>(project.getTasks());
     }
 
     public Long getId() {
@@ -62,12 +60,12 @@ public class Project {
         this.dateCreated = dateCreated;
     }
 
-    public String getInternalId() {
-        return internalId;
+    public Set<Task> getTasks() {
+        return tasks;
     }
 
-    public void setInternalId(String internalId) {
-        this.internalId = internalId;
+    public void setTasks(Set<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
@@ -75,13 +73,14 @@ public class Project {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return id.equals(project.id) && Objects.equals(name, project.name) && Objects.equals(dateCreated, project.dateCreated) && Objects.equals(internalId, project.internalId);
+        return Objects.equals(id, project.id) && Objects.equals(name, project.name) && Objects.equals(dateCreated, project.dateCreated) && Objects.equals(tasks, project.tasks);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, dateCreated, internalId);
+        return Objects.hash(id, name, dateCreated, tasks);
     }
+
 
     @Override
     public String toString() {
@@ -89,7 +88,7 @@ public class Project {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", dateCreated=" + dateCreated +
-                ", internalId='" + internalId + '\'' +
+                ", tasks=" + tasks +
                 '}';
     }
 }
